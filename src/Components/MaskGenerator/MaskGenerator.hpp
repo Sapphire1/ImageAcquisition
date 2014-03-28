@@ -12,7 +12,7 @@
 #include "DataStream.hpp"
 #include "Property.hpp"
 #include "EventHandler2.hpp"
-
+#include <opencv2/opencv.hpp>
 
 
 namespace Processors {
@@ -42,6 +42,7 @@ public:
 	 * values set in config file.
 	 */
 	void prepareInterface();
+	void onNewImage();
 
 protected:
 
@@ -64,9 +65,32 @@ protected:
 	 * Stop component
 	 */
 	bool onStop();
-
-
 	
+	/// Event handler.
+	Base::EventHandler <MaskGenerator> h_onNewImage;
+	// Input data streams
+	
+	// image without object
+	Base::DataStreamIn <cv::Mat, Base::DataStreamBuffer::Newest> in_img1;
+
+	// image with object of topic
+	Base::DataStreamIn <cv::Mat, Base::DataStreamBuffer::Newest> in_img2;
+
+	/// Output data stream - image.
+	Base::DataStreamOut <cv::Mat> out_img;
+
+private:
+
+	cv::Mat img1;
+	cv::Mat img2;
+	cv::Mat imgOut;
+	cv::Mat tmp_img;
+    
+	/*Base::Property<int> m_red_diff;
+	Base::Property<int> m_green_diff;
+	Base::Property<int> m_blue_diff;*/
+	Base::Property<int> m_sum_diff;
+
 
 };
 
