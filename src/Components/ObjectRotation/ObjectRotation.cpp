@@ -1,0 +1,162 @@
+/*!
+ * \file
+ * \brief
+ * \author lzmuda
+ */
+
+#include <memory>
+#include <string>
+
+#include "ObjectRotation.hpp"
+#include "Types/MatrixTranslator.hpp"
+#include "Common/Logger.hpp"
+
+#include <boost/bind.hpp>
+#include <fstream>
+
+namespace Processors {
+namespace ObjectRotation {
+
+ObjectRotation::ObjectRotation(const std::string & name) :
+		Base::Component(name),
+		continuous("continuous", false)
+{
+	addChessboard = false;
+	// Register properties.
+	registerProperty(continuous);
+}
+
+ObjectRotation::~ObjectRotation() {
+}
+
+void ObjectRotation::prepareInterface() {
+	// Register data streams
+	registerStream("in_chessboard", &in_chessboard);
+	registerStream("in_camerainfo", &in_camerainfo);
+	registerStream("out_camerainfo", &out_camerainfo);
+	registerStream("in_img1", &in_img1);
+	registerStream("out_img", &out_img);
+
+	// Register handler processing the chessboard.
+	h_process_chessboard.setup(boost::bind(&ObjectRotation::process_chessboard, this));
+	registerHandler("process_chessboard", &h_process_chessboard);
+	addDependency("process_chessboard", &in_chessboard);
+	addDependency("process_chessboard", &in_camerainfo);
+
+
+	h_test.setup(boost::bind(&ObjectRotation::test, this));
+	registerHandler("test", &h_test);
+	//addDependency("test", &counter);
+
+	//counter=0;
+
+
+}
+
+bool ObjectRotation::onInit() {
+
+	return true;
+}
+
+bool ObjectRotation::onFinish() {
+	return true;
+}
+
+bool ObjectRotation::onStop() {
+	return true;
+}
+
+bool ObjectRotation::onStart() {
+	return true;
+}
+
+
+void ObjectRotation::process_chessboard() {
+    // Check component working mode.
+    //if (addChessboard || continuous) {
+    	// Reset flag.
+    	addChessboard = false;
+	CLOG(LINFO) <<"ObjectRotation::process_chessboard\n";
+	// Retrieve chessboard from the inputstream.
+	Types::Objects3D::Chessboard chessboard = in_chessboard.read();
+	Types::CameraInfo camera_info = in_camerainfo.read();
+
+	imageSize = camera_info.size();
+
+	// Add image points.
+	imgPoints=chessboard.getImagePoints();
+
+	// Add object points.
+	objpoints=chessboard.getModelPoints();
+
+	for(unsigned int i = 0; i < 4/*imgPoints.size()*/; ++i)
+	{
+	//	std::cout << "Image point from ObjectRotation: " << imgPoints[i] << std::endl;
+	}
+		
+	if(in_img1.empty())
+	{
+		std::cout<<"Pusty!\n";
+		return;
+	}
+	else
+		img1 = in_img1.read();
+	// Retrieve chessboard from the inputstream.
+	imageSize = camera_info.size();
+	CLOG(LINFO) << "Registered new set of points";
+
+		if(imgPoints.size()>0) {
+		
+		
+		  cv::Mat cameraMatrix(3,3,cv::DataType<double>::type);
+		  cv::setIdentity(cameraMatrix);
+		 
+		  std::cout << "Initial cameraMatrix: " << cameraMatrix << std::endl;
+		  cv::Mat distCoeffs = cv::Mat::zeros(8, 1, CV_64F);
+		  cv::Mat rvec(3,1,cv::DataType<double>::type);
+		  cv::Mat tvec(3,1,cv::DataType<double>::type);
+		//std::cout << "\nThere are " << imgPoints.size() << " imagePoints and " << objpoints.size() << " objectPoints." << std::endl;
+		 cv::solvePnP(objpoints, imgPoints, cameraMatrix, distCoeffs, rvec, tvec);
+		 std::cout << "rvec: " << rvec << std::endl;
+		 std::cout << "tvec: " << tvec << std::endl;
+		  std::vector<cv::Point2f> projectedPoints;
+		 cv::projectPoints(objpoints, rvec, tvec, cameraMatrix, distCoeffs, projectedPoints);
+	         for(unsigned int i = 0; i < 4/*projectedPoints.size()*/; ++i)
+	 	 {
+		 //	std::cout << "Image point: " << imgPoints[i] << " Projected to " << projectedPoints[i] << std::endl;
+		 }
+
+		 cv::circle(img1, projectedPoints[0], 4 ,CV_RGB(255,0,0));
+		 cv::circle(img1, projectedPoints[8], 4 ,CV_RGB(255,0,0));
+		 cv::circle(img1, projectedPoints[45], 4 ,CV_RGB(255,0,0));  
+		 cv::Point one, two, three;
+	         one.x=10; one.y=10;
+		 two.x = 60; two.y = 10;
+		 three.x = 10; three.y = 60;
+		 cv::line(img1, one, two, CV_RGB(255,0,0));
+		 cv::line(img1, one, three, CV_RGB(0,255,0));
+		 cv::line(img1, projectedPoints[0], projectedPoints[8], CV_RGB(255,0,0), 2 );//x
+		 cv::line(img1, projectedPoints[0], projectedPoints[45], CV_RGB(0,255,0), 2 );//y
+		
+		 double x_diff = projectedPoints[0].x-projectedPoints[8].x;
+		 double y_diff = projectedPoints[0].y-projectedPoints[8].y;
+	         double actualAngle = -atan2(y_diff,x_diff)/CV_PI*180;
+		 std::cout<<"Angle Rotation: "<<actualAngle<<"\n";
+		 //if(fabs(actualAngle-lastAngle>5))
+		//	counter=(counter++)%2;
+		 //lastAngle=actualAngle;
+		 out_img.write(img1);
+   }
+   else
+	LOG(LERROR) << "ObjectRotation: dataset empty\n";
+
+}
+void ObjectRotation::test()
+{
+
+	std::cout<<"TEST!!!\n";
+}
+
+
+} //: namespace ObjectRotation
+} //: namespace Processors

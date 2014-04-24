@@ -1,0 +1,16 @@
+/home/lzmuda/DCL/ImageAcquisition/dist/lib/libMaskGenerator.so
+/home/lzmuda/DCL/ImageAcquisition/dist/lib/libObjectRotation.so
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/MatrixTranslator.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Rectangle.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/CameraInfo.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/ImagePosition.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Ellipse.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/DrawableContainer.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Line.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Drawable.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Features.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/stream_OpenCV.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Objects3D/Object3D.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Objects3D/Chessboard.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/include/Types/Circles/Circles.hpp
+/home/lzmuda/DCL/ImageAcquisition/dist/lib/libTypesCircles.so

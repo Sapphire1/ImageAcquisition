@@ -1,0 +1,85 @@
+<Task>
+	<!-- reference task information -->
+	<Reference>
+		<Author>
+			<name>Łukasz Żmuda</name>
+			<link></link>
+		</Author>
+		
+		<Description>
+			<brief></brief>
+			<full></full>	
+		</Description>
+	</Reference>
+	
+	<!-- task definition -->
+	<Subtasks>
+		<Subtask name="Processing">
+			<Executor name="Exec1"  period="0.1">
+				<Component name="Source" type="CvBasic:Sequence" priority="1" bump="0">
+					<param name="sequence.pattern">.*\.jpg</param>
+					<param name="sequence.directory">%[TASK_LOCATION]%/../data/calibration_opencv/</param>
+					<param name="mode.loop">0</param>
+					<param name="mode.iterate">0</param>
+				</Component>
+								
+				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
+					<param name="width">768</param>
+					<param name="height">576</param>
+					<param name="camera_matrix">1 0 0 ; 0 1 0 ; 0 0 1</param>
+					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
+				</Component>
+				
+				<Component name="Chessboard" type="CvBasic:CvFindChessboardCorners" priority="3" bump="0">
+					<param name="chessboard.width">9</param>
+					<param name="chessboard.height">6</param>
+					<param name="chessboard.square_width">0.02</param>
+					<param name="chessboard.square_height">0.02</param>
+				</Component>
+				
+				<Component name="ObjectRotation" type="ImageAcquisition:ObjectRotation" priority="4" bump="1">
+					
+				</Component>
+				
+			</Executor>
+		</Subtask>
+		
+		<Subtask name="Visualisation">
+			<Executor name="Exec2" period="0.2">
+				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
+					<param name="count">1</param>
+					<param name="title">Original</param>
+					<!--param name="count">2</param>
+					<param name="title">Original,Axis</param-->
+				</Component>
+			</Executor>
+		</Subtask>	
+	
+	</Subtasks>
+	
+	<!-- pipes connecting datastreams -->
+	<DataStreams>
+		<Source name="Source.out_img">	
+			<sink>Chessboard.in_img</sink>
+			<sink>Window.in_img0</sink>
+			<sink>ObjectRotation.in_img1</sink>		
+		</Source>
+		<Source name="CameraInfo.out_camerainfo">
+			<sink>ObjectRotation.in_camerainfo</sink>
+		</Source>
+		<Source name="Chessboard.out_chessboard">
+			<sink>Window.in_draw0</sink>
+			<sink>ObjectRotation.in_chessboard</sink>		
+		</Source>
+		<Source name="ObjectRotation.out_camerainfo">
+			<sink>CameraInfo.in_camerainfo</sink>
+		</Source>
+		<!--Source name="ObjectRotation.out_img">
+			<sink>Window.in_img1</sink>
+		</Source-->
+	</DataStreams>
+</Task>
+
+
+
+

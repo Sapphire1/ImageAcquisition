@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Task>
+	<!-- reference task information -->
+	<Reference>
+		<Author>
+			<name>Lukasz Zmuda</name>
+			<link></link>
+		</Author>
+		
+		<Description>
+			<brief></brief>
+			<full></full>	
+		</Description>
+	</Reference>
+	
+	<!-- task definition -->
+	<Subtasks>
+		<Subtask name="Processing">
+			<Executor name="Processing"  period="1">
+				 <Component name="ObjectSequence" type="CvBasic:Sequence" priority="1" bump="0"><param name="sequence.directory">%[TASK_LOCATION]%/../data/withObject/</param>
+				   <param name="sequence.pattern">.*\.jpg</param>
+				   <param name="mode.loop">1</param>
+				   <param name="mode.iterate">0</param>
+				</Component>
+				 <Component name="SequenceWithoutObject" type="CvBasic:Sequence" priority="1" bump="0"><param name="sequence.directory">%[TASK_LOCATION]%/../data/withoutObject/</param>
+				   <param name="sequence.pattern">.*\.jpg</param>
+				   <param name="mode.loop">1</param>
+				   <param name="mode.iterate">0</param>
+				</Component>
+				<Component name="MaskGenerator" type="ImageAcquisition:MaskGenerator" priority="6" bump="0">
+				</Component>
+			</Executor>
+		</Subtask>	
+		<Subtask name="Visualisation">
+			<Executor name="Exec1" period="0.01">
+				<Component name="Window" type="CvBasic:CvWindow" priority="2" bump="0">
+					<param name="count">3</param>
+					<param name="title">WithObject, WithoutObject, Mask</param>
+				</Component>
+			</Executor>
+		</Subtask>
+		</Subtasks>			
+		
+	<!-- pipes connecting datastreams -->
+	<DataStreams>
+		 <Source name="ObjectSequence.out_img">
+			<sink>MaskGenerator.in_img1</sink>		
+	      </Source>
+	      <Source name="SequenceWithoutObject.out_img">
+			<sink>MaskGenerator.in_img2</sink>		
+	      </Source>
+	      <Source name="ObjectSequence.out_img">
+			<sink>Window.in_img0</sink>		
+	      </Source>
+	      <Source name="SequenceWithoutObject.out_img">
+			<sink>Window.in_img1</sink>		
+	      </Source>
+	       <Source name="MaskGenerator.out_img">
+			<sink>Window.in_img2</sink>		
+	      </Source>
+	</DataStreams>
+</Task>
+
+
+
+

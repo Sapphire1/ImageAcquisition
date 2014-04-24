@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/./Types/Drawable.hpp
+iostream
+-
+opencv2/core/core.hpp
+-
+
+/home/lzmuda/DCL/ImageAcquisition/src/Types/Circles/Circles.cpp
+Circles.hpp
+/home/lzmuda/DCL/ImageAcquisition/src/Types/Circles/Circles.hpp
+
+/home/lzmuda/DCL/ImageAcquisition/src/Types/Circles/Circles.hpp
+vector
+-
+opencv2/core/core.hpp
+-
+Types/Drawable.hpp
+/home/lzmuda/DCL/ImageAcquisition/src/Types/Circles/Types/Drawable.hpp
+

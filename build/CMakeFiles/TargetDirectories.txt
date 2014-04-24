@@ -1,0 +1,3 @@
+/home/lzmuda/DCL/ImageAcquisition/build/src/Components/MaskGenerator/CMakeFiles/MaskGenerator.dir
+/home/lzmuda/DCL/ImageAcquisition/build/src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir
+/home/lzmuda/DCL/ImageAcquisition/build/src/Types/Circles/CMakeFiles/TypesCircles.dir
