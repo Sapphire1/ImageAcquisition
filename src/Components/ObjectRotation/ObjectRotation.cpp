@@ -36,21 +36,13 @@ void ObjectRotation::prepareInterface() {
 	registerStream("out_camerainfo", &out_camerainfo);
 	registerStream("in_img1", &in_img1);
 	registerStream("out_img", &out_img);
+	registerStream("out_img2", &out_img2);
 
 	// Register handler processing the chessboard.
 	h_process_chessboard.setup(boost::bind(&ObjectRotation::process_chessboard, this));
 	registerHandler("process_chessboard", &h_process_chessboard);
 	addDependency("process_chessboard", &in_chessboard);
 	addDependency("process_chessboard", &in_camerainfo);
-
-
-	h_test.setup(boost::bind(&ObjectRotation::test, this));
-	registerHandler("test", &h_test);
-	//addDependency("test", &counter);
-
-	//counter=0;
-
-
 }
 
 bool ObjectRotation::onInit() {
@@ -76,7 +68,7 @@ void ObjectRotation::process_chessboard() {
     //if (addChessboard || continuous) {
     	// Reset flag.
     	addChessboard = false;
-	CLOG(LINFO) <<"ObjectRotation::process_chessboard\n";
+	//CLOG(LINFO) <<"ObjectRotation::process_chessboard\n";
 	// Retrieve chessboard from the inputstream.
 	Types::Objects3D::Chessboard chessboard = in_chessboard.read();
 	Types::CameraInfo camera_info = in_camerainfo.read();
@@ -103,7 +95,7 @@ void ObjectRotation::process_chessboard() {
 		img1 = in_img1.read();
 	// Retrieve chessboard from the inputstream.
 	imageSize = camera_info.size();
-	CLOG(LINFO) << "Registered new set of points";
+	//CLOG(LINFO) << "Registered new set of points";
 
 		if(imgPoints.size()>0) {
 		
@@ -111,14 +103,14 @@ void ObjectRotation::process_chessboard() {
 		  cv::Mat cameraMatrix(3,3,cv::DataType<double>::type);
 		  cv::setIdentity(cameraMatrix);
 		 
-		  std::cout << "Initial cameraMatrix: " << cameraMatrix << std::endl;
+		  //std::cout << "Initial cameraMatrix: " << cameraMatrix << std::endl;
 		  cv::Mat distCoeffs = cv::Mat::zeros(8, 1, CV_64F);
 		  cv::Mat rvec(3,1,cv::DataType<double>::type);
 		  cv::Mat tvec(3,1,cv::DataType<double>::type);
 		//std::cout << "\nThere are " << imgPoints.size() << " imagePoints and " << objpoints.size() << " objectPoints." << std::endl;
 		 cv::solvePnP(objpoints, imgPoints, cameraMatrix, distCoeffs, rvec, tvec);
-		 std::cout << "rvec: " << rvec << std::endl;
-		 std::cout << "tvec: " << tvec << std::endl;
+		// std::cout << "rvec: " << rvec << std::endl;
+		 //std::cout << "tvec: " << tvec << std::endl;
 		  std::vector<cv::Point2f> projectedPoints;
 		 cv::projectPoints(objpoints, rvec, tvec, cameraMatrix, distCoeffs, projectedPoints);
 	         for(unsigned int i = 0; i < 4/*projectedPoints.size()*/; ++i)
@@ -142,9 +134,13 @@ void ObjectRotation::process_chessboard() {
 		 double y_diff = projectedPoints[0].y-projectedPoints[8].y;
 	         double actualAngle = -atan2(y_diff,x_diff)/CV_PI*180;
 		 std::cout<<"Angle Rotation: "<<actualAngle<<"\n";
-		 //if(fabs(actualAngle-lastAngle>5))
-		//	counter=(counter++)%2;
-		 //lastAngle=actualAngle;
+		 std::cout<<"DIFF: "<<lastAngle-actualAngle<<"\n";
+		 if(lastAngle-actualAngle>5 ||lastAngle-actualAngle<-5)
+		 {
+			std::cout<<"Take Foto!!!\n\n\n";
+			out_img2.write(img1);
+		 }		
+		 lastAngle=actualAngle; 
 		 out_img.write(img1);
    }
    else

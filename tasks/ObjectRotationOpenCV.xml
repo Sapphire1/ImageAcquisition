@@ -38,19 +38,20 @@
 				</Component>
 				
 				<Component name="ObjectRotation" type="ImageAcquisition:ObjectRotation" priority="4" bump="1">
-					
 				</Component>
-				
 			</Executor>
 		</Subtask>
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.2">
+				<Component name="RGBDViewer" type="DCL_CameraNUI:RGBDViewer" priority="1" bump="0">
+				</Component>
+
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">1</param>
 					<param name="title">Original</param>
-					<!--param name="count">2</param>
-					<param name="title">Original,Axis</param-->
+					<param name="count">2</param>
+					<param name="title">Original,Axis</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -74,9 +75,11 @@
 		<Source name="ObjectRotation.out_camerainfo">
 			<sink>CameraInfo.in_camerainfo</sink>
 		</Source>
-		<!--Source name="ObjectRotation.out_img">
-			<sink>Window.in_img1</sink>
-		</Source-->
+		<Source name="ObjectRotation.out_img2">
+			<sink>RGBDViewer.in_rgb</sink>
+			<sink>Window.in_img1</sink>		
+		</Source>
+
 	</DataStreams>
 </Task>
 

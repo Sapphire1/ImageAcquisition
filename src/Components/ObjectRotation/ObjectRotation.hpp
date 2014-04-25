@@ -81,13 +81,13 @@ protected:
 	
 	/// Output data stream - image.
 	Base::DataStreamOut <cv::Mat> out_img;
+	Base::DataStreamOut <cv::Mat> out_img2;
 
 	// Handlers
 
 	// Handler activated when datastream chessboard is present.
 	Base::EventHandler2 h_process_chessboard;
-    
-	Base::EventHandler2 h_test;
+
 	// Handler activated a calibration computations should be performed.
 	//Base::EventHandler2 h_perform_calibration;
 
