@@ -112,23 +112,30 @@ void ObjectRotation::process_chessboard() {
 		// std::cout << "rvec: " << rvec << std::endl;
 		 //std::cout << "tvec: " << tvec << std::endl;
 		  std::vector<cv::Point2f> projectedPoints;
+		 //cv::circle(img1, imgPoints[0], 32 ,CV_RGB(255,0,0));
+		 //cv::circle(img1, imgPoints[1], 32 ,CV_RGB(255,0,0));
+ 		 //cv::circle(img1, imgPoints[2], 32 ,CV_RGB(255,0,0));
+
 		 cv::projectPoints(objpoints, rvec, tvec, cameraMatrix, distCoeffs, projectedPoints);
 	         for(unsigned int i = 0; i < 4/*projectedPoints.size()*/; ++i)
 	 	 {
 		 //	std::cout << "Image point: " << imgPoints[i] << " Projected to " << projectedPoints[i] << std::endl;
 		 }
 
-		 cv::circle(img1, projectedPoints[0], 4 ,CV_RGB(255,0,0));
+		 /*cv::circle(img1, projectedPoints[0], 4 ,CV_RGB(255,0,0));
 		 cv::circle(img1, projectedPoints[8], 4 ,CV_RGB(255,0,0));
-		 cv::circle(img1, projectedPoints[45], 4 ,CV_RGB(255,0,0));  
+		 cv::circle(img1, projectedPoints[45], 4 ,CV_RGB(255,0,0)); */
+		 cv::circle(img1, projectedPoints[0], 32 ,CV_RGB(255,0,0));
+		 cv::circle(img1, projectedPoints[1], 32 ,CV_RGB(255,0,0));
+ 		 cv::circle(img1, projectedPoints[2], 32 ,CV_RGB(255,0,0));
 		 cv::Point one, two, three;
 	         one.x=10; one.y=10;
 		 two.x = 60; two.y = 10;
 		 three.x = 10; three.y = 60;
 		 cv::line(img1, one, two, CV_RGB(255,0,0));
 		 cv::line(img1, one, three, CV_RGB(0,255,0));
-		 cv::line(img1, projectedPoints[0], projectedPoints[8], CV_RGB(255,0,0), 2 );//x
-		 cv::line(img1, projectedPoints[0], projectedPoints[45], CV_RGB(0,255,0), 2 );//y
+		 cv::line(img1, projectedPoints[0], projectedPoints[3], CV_RGB(255,0,0), 2 );//x
+		 cv::line(img1, projectedPoints[0], projectedPoints[40], CV_RGB(0,255,0), 2 );//y
 		
 		 double x_diff = projectedPoints[0].x-projectedPoints[8].x;
 		 double y_diff = projectedPoints[0].y-projectedPoints[8].y;
@@ -138,7 +145,7 @@ void ObjectRotation::process_chessboard() {
 		 if(lastAngle-actualAngle>5 ||lastAngle-actualAngle<-5)
 		 {
 			std::cout<<"Take Foto!!!\n\n\n";
-			//out_img2.write(img1);
+			out_img2.write(img1);
 		 }		
 		 lastAngle=actualAngle; 
 		 out_img.write(img1);
