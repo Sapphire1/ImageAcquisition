@@ -28,6 +28,20 @@ boost/lexical_cast.hpp
 boost/algorithm/string.hpp
 -
 
+/home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Chessboard.hpp
+opencv2/core/core.hpp
+-
+opencv2/calib3d/calib3d.hpp
+-
+Object3D.hpp
+/home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Object3D.hpp
+
+/home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Object3D.hpp
+stdexcept
+-
+Types/Drawable.hpp
+/home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Types/Drawable.hpp
+
 /home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/ObjectRotation.cpp
 memory
 -
@@ -58,23 +72,9 @@ EventHandler2.hpp
 opencv2/opencv.hpp
 -
 ../../Types/Objects3D/Chessboard.hpp
-/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Chessboard.hpp
+/home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Chessboard.hpp
 Types/CameraInfo.hpp
 /home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/Types/CameraInfo.hpp
-
-/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Chessboard.hpp
-opencv2/core/core.hpp
--
-opencv2/calib3d/calib3d.hpp
--
-Object3D.hpp
-/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Object3D.hpp
-
-/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Object3D.hpp
-stdexcept
--
-Types/Drawable.hpp
-/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Types/Drawable.hpp
 
 /home/lzmuda/DisCODe/build/inst/include/Base/Component.hpp
 map

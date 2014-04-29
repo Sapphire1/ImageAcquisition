@@ -8,6 +8,20 @@ SET(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/lzmuda/DCL/ImageAcquisition/build")
 # Force unix paths in dependencies.
 SET(CMAKE_FORCE_UNIX_PATHS 1)
 
+# The C and CXX include file search paths:
+SET(CMAKE_C_INCLUDE_PATH
+  "src/Types/Circles"
+  "../src/Types/Circles"
+  "/home/lzmuda/DisCODe/build/inst/include/Base"
+  "/home/lzmuda/DisCODe/build/inst/include/Common"
+  "/home/lzmuda/DisCODe/build/inst/include/Types"
+  "/home/lzmuda/DisCODe/build/inst/include"
+  "../src/."
+  "/usr/include/opencv"
+  )
+SET(CMAKE_CXX_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})
+SET(CMAKE_Fortran_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})
+SET(CMAKE_ASM_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})
 
 # The C and CXX include file regular expressions for this directory.
 SET(CMAKE_C_INCLUDE_REGEX_SCAN "^.*$")

@@ -5,10 +5,10 @@ src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o
  ../src/./Types/CameraInfo.hpp
  ../src/./Types/Drawable.hpp
  ../src/./Types/MatrixTranslator.hpp
+ /home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Chessboard.hpp
+ /home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/../../Types/Objects3D/Object3D.hpp
  /home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/ObjectRotation.cpp
  /home/lzmuda/DCL/ImageAcquisition/src/Components/ObjectRotation/ObjectRotation.hpp
- /home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Chessboard.hpp
- /home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Object3D.hpp
  /home/lzmuda/DisCODe/build/inst/include/Base/Component.hpp
  /home/lzmuda/DisCODe/build/inst/include/Base/Component_Aux.hpp
  /home/lzmuda/DisCODe/build/inst/include/Base/Connection.hpp

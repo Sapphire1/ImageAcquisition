@@ -23,35 +23,35 @@
 					<param name="mode.iterate">0</param>
 				</Component>
 								
-				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
+				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="1">
 					<param name="width">768</param>
 					<param name="height">576</param>
 					<param name="camera_matrix">1 0 0 ; 0 1 0 ; 0 0 1</param>
 					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
 				</Component>
 				
-				<Component name="Chessboard" type="CvBasic:CvFindChessboardCorners" priority="3" bump="0">
+				<Component name="Chessboard" type="DCL_CvBasic:CvFindChessboardCorners" priority="2" bump="0">
 					<param name="chessboard.width">9</param>
 					<param name="chessboard.height">6</param>
 					<param name="chessboard.square_width">0.02</param>
 					<param name="chessboard.square_height">0.02</param>
 				</Component>
 				
-				<Component name="ObjectRotation" type="ImageAcquisition:ObjectRotation" priority="4" bump="1">
+				<Component name="ObjectRotation" type="ImageAcquisition:ObjectRotation" priority="3" bump="1">
 				</Component>
 			</Executor>
 		</Subtask>
 		
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.2">
-				<Component name="RGBDViewer" type="DCL_CameraNUI:RGBDViewer" priority="1" bump="0">
+				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
 				</Component>
 
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">1</param>
 					<param name="title">Original</param>
-					<param name="count">2</param>
-					<param name="title">Original,Axis</param>
+					<param name="count">3</param>
+					<param name="title">Original,Foto,Axis</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -65,7 +65,7 @@
 			<sink>Window.in_img0</sink>
 			<sink>ObjectRotation.in_img1</sink>		
 		</Source>
-		<Source name="CameraInfo.out_camerainfo">
+		<Source name="CameraInfo.out_camera_info">
 			<sink>ObjectRotation.in_camerainfo</sink>
 		</Source>
 		<Source name="Chessboard.out_chessboard">
@@ -73,13 +73,15 @@
 			<sink>ObjectRotation.in_chessboard</sink>		
 		</Source>
 		<Source name="ObjectRotation.out_camerainfo">
-			<sink>CameraInfo.in_camerainfo</sink>
+			<sink>CameraInfo.in_camera_info</sink>
 		</Source>
 		<Source name="ObjectRotation.out_img2">
 			<sink>RGBDViewer.in_rgb</sink>
-			<sink>Window.in_img1</sink>		
+			<sink>Window.in_img1</sink>	
 		</Source>
-
+		<Source name="ObjectRotation.out_img">
+			<sink>Window.in_img2</sink>	
+		</Source>		
 	</DataStreams>
 </Task>
 

@@ -4,10 +4,10 @@
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/./Types/CameraInfo.hpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/./Types/Drawable.hpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/./Types/MatrixTranslator.hpp
+src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/Components/ObjectRotation/../../Types/Objects3D/Chessboard.hpp
+src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/Components/ObjectRotation/../../Types/Objects3D/Object3D.hpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/Components/ObjectRotation/ObjectRotation.cpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/Components/ObjectRotation/ObjectRotation.hpp
-src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/Types/Objects3D/Chessboard.hpp
-src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: ../src/Types/Objects3D/Object3D.hpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: /home/lzmuda/DisCODe/build/inst/include/Base/Component.hpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: /home/lzmuda/DisCODe/build/inst/include/Base/Component_Aux.hpp
 src/Components/ObjectRotation/CMakeFiles/ObjectRotation.dir/ObjectRotation.cpp.o: /home/lzmuda/DisCODe/build/inst/include/Base/Connection.hpp

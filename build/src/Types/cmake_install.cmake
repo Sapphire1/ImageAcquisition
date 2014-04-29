@@ -34,23 +34,23 @@ ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "sdk")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/Types" TYPE FILE FILES
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/CameraInfo.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Drawable.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/DrawableContainer.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Ellipse.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Features.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/ImagePosition.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Line.hpp"
     "/home/lzmuda/DCL/ImageAcquisition/src/Types/MatrixTranslator.hpp"
     "/home/lzmuda/DCL/ImageAcquisition/src/Types/Rectangle.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/CameraInfo.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/ImagePosition.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Ellipse.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/DrawableContainer.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Line.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Drawable.hpp"
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Features.hpp"
     "/home/lzmuda/DCL/ImageAcquisition/src/Types/stream_OpenCV.hpp"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "sdk")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "sdk")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/Types/Objects3D" TYPE FILE FILES
-    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Object3D.hpp"
     "/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Chessboard.hpp"
+    "/home/lzmuda/DCL/ImageAcquisition/src/Types/Objects3D/Object3D.hpp"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "sdk")
 

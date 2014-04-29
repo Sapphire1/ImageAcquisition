@@ -33,6 +33,8 @@
 		</Subtask>	
 		<Subtask name="Visualisation">
 			<Executor name="Exec1" period="0.01">
+				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
+				</Component>
 				<Component name="Window" type="CvBasic:CvWindow" priority="2" bump="0">
 					<param name="count">3</param>
 					<param name="title">WithObject, WithoutObject, Mask</param>
@@ -56,7 +58,8 @@
 			<sink>Window.in_img1</sink>		
 	      </Source>
 	       <Source name="MaskGenerator.out_img">
-			<sink>Window.in_img2</sink>		
+			<sink>Window.in_img2</sink>
+			<sink>RGBDViewer.in_rgb</sink>		
 	      </Source>
 	</DataStreams>
 </Task>

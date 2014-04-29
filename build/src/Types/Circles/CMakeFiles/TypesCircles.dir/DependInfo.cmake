@@ -11,18 +11,3 @@ SET(CMAKE_CXX_COMPILER_ID "GNU")
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
   )
-
-# The include file search paths:
-SET(CMAKE_C_TARGET_INCLUDE_PATH
-  "src/Types/Circles"
-  "../src/Types/Circles"
-  "/home/lzmuda/DisCODe/build/inst/include/Base"
-  "/home/lzmuda/DisCODe/build/inst/include/Common"
-  "/home/lzmuda/DisCODe/build/inst/include/Types"
-  "/home/lzmuda/DisCODe/build/inst/include"
-  "../src/."
-  "/usr/include/opencv"
-  )
-SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
