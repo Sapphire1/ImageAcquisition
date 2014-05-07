@@ -134,15 +134,15 @@ void ObjectRotation::process_chessboard() {
 		 three.x = 10; three.y = 60;
 		 cv::line(img1, one, two, CV_RGB(255,0,0));
 		 cv::line(img1, one, three, CV_RGB(0,255,0));
-		 cv::line(img1, projectedPoints[0], projectedPoints[3], CV_RGB(255,0,0), 2 );//x
-		 cv::line(img1, projectedPoints[0], projectedPoints[40], CV_RGB(0,255,0), 2 );//y
+		 cv::line(img1, projectedPoints[0], projectedPoints[2], CV_RGB(255,0,0), 2 );//x
+		 cv::line(img1, projectedPoints[0], projectedPoints[12], CV_RGB(0,255,0), 2 );//y
 		
 		 double x_diff = projectedPoints[0].x-projectedPoints[8].x;
 		 double y_diff = projectedPoints[0].y-projectedPoints[8].y;
 	         double actualAngle = -atan2(y_diff,x_diff)/CV_PI*180;
 		 std::cout<<"Angle Rotation: "<<actualAngle<<"\n";
 		 std::cout<<"DIFF: "<<lastAngle-actualAngle<<"\n";
-		 if(lastAngle-actualAngle>5 ||lastAngle-actualAngle<-5)
+		 if(abs(lastAngle-actualAngle)>5)
 		 {
 			std::cout<<"Take Foto!!!\n\n\n";
 			out_img2.write(img1);

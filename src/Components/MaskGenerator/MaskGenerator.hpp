@@ -86,9 +86,9 @@ private:
 	cv::Mat imgOut;
 	cv::Mat tmp_img;
     
-	/*Base::Property<int> m_red_diff;
+	Base::Property<int> m_red_diff;
 	Base::Property<int> m_green_diff;
-	Base::Property<int> m_blue_diff;*/
+	Base::Property<int> m_blue_diff;
 	Base::Property<int> m_sum_diff;
 
 

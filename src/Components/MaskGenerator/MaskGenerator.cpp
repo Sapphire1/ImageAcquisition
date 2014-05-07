@@ -18,25 +18,25 @@ namespace MaskGenerator {
 MaskGenerator::MaskGenerator(const std::string & name) :
 		Base::Component(name),
 		
-	m_sum_diff("sumOfDiffColors.diff", 0, "range")/*,
+	m_sum_diff("sumOfDiffColors.diff", 0, "range"),
 	m_green_diff("green.diff", 0, "range"),
 	m_blue_diff("blue.diff", 0, "range"),
-	m_red_diff("sum.diff", 0, "range")*/
+	m_red_diff("red.diff", 0, "range")
 {
 	// Constraints.
-	/*m_red_diff.addConstraint("0");
+	m_red_diff.addConstraint("0");
 	m_red_diff.addConstraint("255");
 	m_green_diff.addConstraint("0");
 	m_green_diff.addConstraint("255");
 
 	m_blue_diff.addConstraint("0");
-	m_blue_diff.addConstraint("255");*/
+	m_blue_diff.addConstraint("255");
 	m_sum_diff.addConstraint("0");
 	m_sum_diff.addConstraint("765");
 
-	/*registerProperty(m_red_diff);
+	registerProperty(m_red_diff);
 	registerProperty(m_green_diff);
-	registerProperty(m_blue_diff);*/
+	registerProperty(m_blue_diff);
 	registerProperty(m_sum_diff);
       
 	LOG(LTRACE) << "Hello MaskGenerator\n";
@@ -111,8 +111,8 @@ void MaskGenerator::onNewImage(){
                 
 		uchar sum1 = r1+g1+b1;
 		uchar sum2 = r2+g2+b2;
-		
-		if(abs(sum1-sum2)>m_sum_diff)
+
+		if(abs(sum1-sum2)>m_sum_diff || abs(r1-r2)>m_red_diff ||  abs(g1-g2)>m_green_diff || abs(b1-b2)>m_blue_diff)
 		{
 		  tmp_p[j] = 255;
 		  tmp_p[j+1]  = 255;

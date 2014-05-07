@@ -30,7 +30,7 @@
 					<param name="dist_coeffs">0 0 0 0 0 0 0 0</param>
 				</Component>
 				
-				<Component name="Chessboard" type="DCL_CvBasic:CvFindChessboardCorners" priority="2" bump="0">
+				<Component name="CirclesGrid" type="DCL_CvBasic:CvFindCirclesGrid" priority="2" bump="0">
 					<param name="chessboard.width">9</param>
 					<param name="chessboard.height">6</param>
 					<param name="chessboard.square_width">0.02</param>
@@ -51,7 +51,7 @@
 					<param name="count">1</param>
 					<param name="title">Original</param>
 					<param name="count">3</param>
-					<param name="title">Original,Foto,Axis</param>
+					<param name="title">Original,Foto,Axis,InvertedColors</param>
 				</Component>
 			</Executor>
 		</Subtask>	
@@ -61,14 +61,14 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">	
-			<sink>Chessboard.in_img</sink>
+			<sink>CirclesGrid.in_img</sink>
 			<sink>Window.in_img0</sink>
 			<sink>ObjectRotation.in_img1</sink>		
 		</Source>
 		<Source name="CameraInfo.out_camera_info">
 			<sink>ObjectRotation.in_camerainfo</sink>
 		</Source>
-		<Source name="Chessboard.out_chessboard">
+		<Source name="CirclesGrid.out_chessboard">
 			<sink>Window.in_draw0</sink>
 			<sink>ObjectRotation.in_chessboard</sink>		
 		</Source>
@@ -78,6 +78,9 @@
 		<Source name="ObjectRotation.out_img2">
 			<sink>RGBDViewer.in_rgb</sink>
 			<sink>Window.in_img1</sink>	
+		</Source>
+		<Source name="CirclesGrid.out_img">
+			<sink>Window.in_img3</sink>	
 		</Source>
 		<Source name="ObjectRotation.out_img">
 			<sink>Window.in_img2</sink>	
