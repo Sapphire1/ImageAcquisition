@@ -21,7 +21,7 @@ MaskGenerator::MaskGenerator(const std::string & name) :
 	m_sum_diff("sumOfDiffColors.diff", 0, "range"),
 	m_green_diff("green.diff", 0, "range"),
 	m_blue_diff("blue.diff", 0, "range"),
-	m_red_diff("sum.diff", 0, "range")
+	m_red_diff("red.diff", 0, "range")
 {
 	// Constraints.
 	m_red_diff.addConstraint("0");
@@ -83,7 +83,8 @@ void MaskGenerator::onNewImage(){
         cv::Size size1 = img1.size();
         cv::Size size2 = img2.size();
         std::cout<<"Clone to tmp\n";
-	tmp_img=img1.clone();
+	// tmp_img=img1.clone();
+	tmp_img.create(size1, CV_8UC1);
         // Check the arrays for continuity and, if this is the case,
         // treat the arrays as 1D vectors
         std::cout<<"Set width\n";
@@ -99,8 +100,10 @@ void MaskGenerator::onNewImage(){
             const uchar* rgb_p2 = img2.ptr <uchar> (i);
             uchar* tmp_p = tmp_img.ptr <uchar> (i);
             int j, k = 0;
+	    int val = 0;
             for (j = 0; j < size1.width; j += 3)
             {
+
             	uchar r1 = rgb_p1[j];
                 uchar g1 = rgb_p1[j + 1];
                 uchar b1 = rgb_p1[j + 2];
@@ -114,14 +117,14 @@ void MaskGenerator::onNewImage(){
 
 		if(abs(sum1-sum2)>m_sum_diff || abs(r1-r2)>m_red_diff ||  abs(g1-g2)>m_green_diff || abs(b1-b2)>m_blue_diff)
 		{
-		  tmp_p[j] = 255;
-		  tmp_p[j+1]  = 255;
-		  tmp_p[j+2]  = 255;
+		  val = 255;
 		}
 		else
 		{
-		  tmp_p[j]=tmp_p[j+1]=tmp_p[j+2]=0;
+		  val=0;
 		}
+		tmp_p[k] = val;
+		k++;
             }
         }
         std::cout<<"Write\n";

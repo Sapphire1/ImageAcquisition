@@ -17,12 +17,12 @@
 	<Subtasks>
 		<Subtask name="Processing">
 			<Executor name="Processing"  period="1">
-				 <Component name="ObjectSequence" type="CvBasic:Sequence" priority="1" bump="0"><param name="sequence.directory">%[TASK_LOCATION]%/../data/plansza/</param>
+				 <Component name="ObjectSequence" type="CvBasic:Sequence" priority="1" bump="0"><param name="sequence.directory">/home/lzmuda/DCL/ImageAcquisition/data/z_mazakami/</param>
 				   <param name="sequence.pattern">.*\.png</param>
 				   <param name="mode.loop">1</param>
 				   <param name="mode.iterate">0</param>
 				</Component>
-				 <Component name="SequenceWithoutObject" type="CvBasic:Sequence" priority="1" bump="0"><param name="sequence.directory">%[TASK_LOCATION]%/../data/puszka/</param>
+				 <Component name="SequenceWithoutObject" type="CvBasic:Sequence" priority="1" bump="0"><param name="sequence.directory">/home/lzmuda/DCL/ImageAcquisition/data/bezMazakow/</param>
 				   <param name="sequence.pattern">.*\.png</param>
 				   <param name="mode.loop">1</param>
 				   <param name="mode.iterate">0</param>
@@ -33,7 +33,7 @@
 		</Subtask>	
 		<Subtask name="Visualisation">
 			<Executor name="Exec1" period="0.01">
-				<Component name="RGBDViewer" type="CameraNUI:RGBDViewer" priority="1" bump="0">
+				<Component name="RGBDViewer" type="DCL_CameraNUI:RGBDViewer" priority="1" bump="0">
 				</Component>
 				<Component name="Window" type="CvBasic:CvWindow" priority="2" bump="0">
 					<param name="count">3</param>
